@@ -10,17 +10,22 @@
         <form>
             <header class="headerContainer"><h1>HTML5 Form Input Fields</h1></header>
             <div>
-                <label for="text">Enter your Name: </label>
+                <label for="text">Enter your Name: </label
+                <input type="text" id="text" name="text" placeholder="Text Input..." required>
                 <input type="text" id="text" name="text" placeholder="Text Input...">
+
                 <error-output class="text-error" for="text"><p></error-output>
             </div>
             <div>
                 <label for="pass">Enter Password: </label>
+
+                <input type="password" id="pass" name="pass" placeholder="Password Input..." required
                 <input type="password" id="pass" name="pass" placeholder="Password Input...">
                 <error-output class="pass-error" for="pass"></error-output>
             </div>
             <div>
                 <label for="email">Enter Email: </label>
+                <input type="email" id="email" name="email" placeholder="Email Input..." required>
                 <input type="email" id="email" name="email" placeholder="Email Input...">
                 <error-output class="email-error" for="email"></error-output>
             </div>
@@ -34,6 +39,8 @@
             </div>
             <div>
                 <label for="tel">Enter Phone Number: </label>
+
+                <input type="tel" id="tel" name="tel" placeholder="Tel. No Input..." required>
                 <input type="tel" id="tel" name="tel" placeholder="Tel. No Input...">
                 <error-output class="phone-error" for="tel"></error-output>
             </div>
@@ -110,7 +117,14 @@
                 else phoneError.textContent="Phone No is Incorrect";
             });
 
-           
+            const pass = document.getElementById("pass");
+            const passError = document.querySelector(".pass-error");
+            pass.addEventListener("input",function(){
+                let passRegex = RegExp("^(?=.*\\d)(?=.*[A-Z])(?=.*\\W)(?!.*\\W\\w*\\W)(?!.*\\s).{8,}$");
+                if(passRegex.test(pass.value)) passError.textContent = "";
+                else passError.textContent = "Password is Incorrect"
+            });
+   
                 let nameRegex = RegExp("^[A-Z]{1}[a-zA-Z0-1]{2,}$");
                 if(nameRegex.test(text.value))
                     textError.textContent="";
