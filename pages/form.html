@@ -11,6 +11,39 @@
             <header class="headerContainer"><h1>HTML5 Form Input Fields</h1></header>
             <div>
                 <label for="text">Enter your Name: </label>
+                <input type="text" id="text" name="text" placeholder="Text Input...">
+                <error-output class="text-error" for="text"><p></error-output>
+            </div>
+            <div>
+                <label for="pass">Enter Password: </label>
+                <input type="password" id="pass" name="pass" placeholder="Password Input...">
+                <error-output class="pass-error" for="pass"></error-output>
+            </div>
+            <div>
+                <label for="email">Enter Email: </label>
+                <input type="email" id="email" name="email" placeholder="Email Input...">
+                <error-output class="email-error" for="email"></error-output>
+            </div>
+            <div>
+                <label for="url">Enter URL: </label>
+                <input type="url" id="url" name="url" placeholder="URL Input...">
+            </div>
+            <div>
+                <label for="number">Enter Token Number: </label>
+                <input type="number" id="number" name="number" placeholder="Number Input...">
+            </div>
+            <div>
+                <label for="tel">Enter Phone Number: </label>
+                <input type="tel" id="tel" name="tel" placeholder="Tel. No Input...">
+                <error-output class="phone-error" for="tel"></error-output>
+            </div>
+            <div>
+                <label for="search">Enter Search Keyword: </label>
+                <input type="search" id="search" name="search" placeholder="Search Input...">
+            </div>
+            <div class="nativeDateTimePicker">
+                <label for="party">Choose a date and time: </label>
+                <input type="date" id="party" name="bday">
                 <input type="text" id="text" name="text" placeholder="Enter Name...">
                 <error-output class="text-error" for="text"></error-output>
             </div>
@@ -57,13 +90,33 @@
             const text = document.querySelector('#text');
             const textError = document.querySelector(".text-error");         
             text.addEventListener('input',function(){
+                let nameRegex = RegExp("^[A-Z]{1}[a-z]{2,}$");
+                if(nameRegex.test(text.value)) textError.textContent="";
+                else textError.textContent="Name is Incorrect";
+            });
+
+            const email = document.querySelector("#email");
+            const emailError = document.querySelector(".email-error");
+            email.addEventListener('input',function(){
+                let emailRegex = RegExp("^[a-zA-Z0-9+_-]+([.][a-zA-Z0-9]+)*@([a-zA-Z0-9]+)([.][a-z]+)?[.][a-z]{2,}$");
+                if(emailRegex.test(email.value)) emailError.textContent = "";
+                else emailError.textContent="Email is Incorrect";
+            });
+            const tel = document.getElementById("tel");
+            const phoneError = document.querySelector(".phone-error");
+            tel.addEventListener('input',function(){
+                let phoneRegex = RegExp("^[0-9]{1,}[ ][1-9]{1}[0-9]{9}$");
+                if(phoneRegex.test(tel.value)) phoneError.textContent = "";
+                else phoneError.textContent="Phone No is Incorrect";
+            });
+
+           
                 let nameRegex = RegExp("^[A-Z]{1}[a-zA-Z0-1]{2,}$");
                 if(nameRegex.test(text.value))
                     textError.textContent="";
                 else 
                     textError.textContent="Name is Incorrect";
-            });
-
+            })
             const salary = document.querySelector('#salary');
             const output = document.querySelector(".salary-output");
             output.textContent = salary.value;
